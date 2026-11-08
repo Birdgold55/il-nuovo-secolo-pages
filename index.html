@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111a24">
+  <meta name="description" content="Il Nuovo Secolo è un server Discord di roleplay politico ambientato nel 1920. Crea un personaggio, partecipa alla politica italiana e alla diplomazia e contribuisci a scrivere una storia alternativa.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Il Nuovo Secolo — Roleplay politico, 1920">
+  <meta property="og:description" content="Un server Discord di roleplay politico ambientato nel 1920. La storia non è ancora scritta.">
+  <meta property="og:url" content="https://birdgold55.github.io/il-nuovo-secolo-pages/">
+  <title>Il Nuovo Secolo — Roleplay politico, 1920</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #111a24;
+      --surface: #192431;
+      --surface-soft: #1d2a37;
+      --line: #344353;
+      --text: #f2eee5;
+      --muted: #b7b7b1;
+      --gold: #d3b16f;
+      --gold-dark: #18212b;
+      --green: #83aa83;
+      --red: #d17c76;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 1rem/1.7 var(--sans);
+    }
+    a { color: inherit; }
+    a:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+    .wrap { width: min(100% - 2.5rem, 68rem); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      z-index: 20;
+      top: .5rem;
+      left: .5rem;
+      padding: .6rem 1rem;
+      transform: translateY(-160%);
+      background: var(--gold);
+      color: var(--gold-dark);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .site-nav {
+      position: sticky;
+      z-index: 10;
+      top: 0;
+      border-bottom: 1px solid var(--line);
+      background: rgb(17 26 36 / 96%);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner {
+      display: flex;
+      min-height: 4.25rem;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .brand {
+      flex: 0 0 auto;
+      color: var(--gold);
+      font: 700 1.25rem/1 var(--serif);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+      gap: 1.15rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .nav-links a {
+      color: var(--muted);
+      font-size: .88rem;
+      text-decoration: none;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(4.5rem, 11vw, 8rem) 0 5.5rem;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 82% 15%, rgb(211 177 111 / 12%), transparent 34rem),
+        linear-gradient(135deg, #111a24, #15212c 72%, #192431);
+    }
+    .eyebrow {
+      margin: 0 0 1.1rem;
+      color: var(--gold);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+    .year {
+      margin: 0 0 .65rem -.05em;
+      color: var(--gold);
+      font: 700 clamp(7rem, 23vw, 16rem)/.78 var(--serif);
+      letter-spacing: -.075em;
+    }
+    h1, h2, h3 { font-family: var(--serif); line-height: 1.15; }
+    .hero h1 {
+      max-width: 13ch;
+      margin: 1.7rem 0 1rem;
+      font-size: clamp(2.4rem, 6vw, 4.4rem);
+      font-weight: 400;
+      letter-spacing: -.025em;
+    }
+    .hero-copy {
+      max-width: 43rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .button {
+      display: inline-flex;
+      min-height: 3rem;
+      align-items: center;
+      justify-content: center;
+      padding: .7rem 1.25rem;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      color: var(--gold);
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color .18s ease, color .18s ease, transform .18s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--gold); color: var(--gold-dark); }
+    .button.primary:hover { background: #e2c481; }
+    .button.secondary:hover { background: rgb(211 177 111 / 10%); }
+    .hero-note { margin: 1.4rem 0 0; color: var(--muted); font-size: .82rem; }
+    section { padding: clamp(3.75rem, 8vw, 5.5rem) 0; border-bottom: 1px solid var(--line); }
+    .section-kicker {
+      margin: 0 0 .65rem;
+      color: var(--gold);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    section h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      letter-spacing: -.02em;
+    }
+    .lead { max-width: 43rem; margin: .85rem 0 2rem; color: var(--muted); }
+    .steps { margin: 2rem 0 0; padding: 0; list-style: none; counter-reset: step; }
+    .steps li {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 1rem;
+      padding: 1.35rem 0;
+      border-top: 1px solid var(--line);
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: "0" counter(step);
+      color: var(--gold);
+      font: 700 1.2rem/1.5 var(--serif);
+    }
+    .steps h3, .card h3 { margin: 0 0 .35rem; font-size: 1.35rem; }
+    .steps p { margin: 0; color: var(--muted); }
+    .steps b, .card b, .two b { color: var(--text); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+    .card {
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--gold);
+      background: var(--surface);
+    }
+    .card.internal { border-top-color: var(--green); }
+    .card.external { border-top-color: var(--red); }
+    .card > p { margin: 0 0 1rem; color: var(--muted); font-size: .92rem; }
+    .channel-list { margin: 0; padding: 0; list-style: none; }
+    .channel-list li { padding: .55rem 0; border-top: 1px solid var(--line); }
+    .channel-list span { display: block; color: var(--muted); font-size: .88rem; }
+    .voice-note { margin: 1.2rem 0 0; color: var(--muted); }
+    .voice-note strong { color: var(--text); }
+    .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 2rem; }
+    .two h3 { margin: 0 0 .65rem; font-size: 1.55rem; }
+    .two p { margin: 0 0 1rem; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      padding: .35rem .7rem;
+      border: 1px solid var(--line);
+      color: var(--gold);
+      font-size: .88rem;
+    }
+    .note {
+      margin-top: 1.25rem;
+      padding: 1rem 1.2rem;
+      border-left: 3px solid var(--gold);
+      background: var(--surface);
+      color: var(--muted);
+    }
+    .note strong { color: var(--text); }
+    details { border-top: 1px solid var(--line); }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      cursor: pointer;
+      font: 700 1.2rem/1.3 var(--serif);
+      list-style: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--gold); font: 400 1.5rem/1 var(--sans); }
+    details[open] summary::after { content: "−"; }
+    details ul { margin: 0 0 1.2rem; padding-left: 1.25rem; color: var(--muted); }
+    details li { margin: .45rem 0; }
+    .faq details p { margin: 0 0 1.2rem; color: var(--muted); }
+    footer { padding: 4rem 0 2.5rem; text-align: center; }
+    footer h2 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; }
+    footer p { margin: .8rem 0 0; color: var(--muted); }
+    footer .actions { justify-content: center; }
+    footer small { display: block; margin-top: 2.5rem; color: var(--muted); font-size: .8rem; }
+    @media (max-width: 720px) {
+      .wrap { width: min(100% - 1.5rem, 68rem); }
+      .nav-inner { display: block; padding-block: .9rem .65rem; }
+      .brand { display: inline-block; margin-bottom: .7rem; }
+      .nav-links { justify-content: flex-start; gap: 1rem; }
+      .nav-links a { font-size: .82rem; }
+      .hero { padding-top: 4.2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#contenuto">Vai al contenuto</a>
+  <nav class="site-nav" aria-label="Navigazione principale">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#" aria-label="Il Nuovo Secolo, inizio pagina">Il Nuovo Secolo</a>
+      <div class="nav-links">
+        <a href="#iniziare">Come iniziare</a>
+        <a href="#server">Il server</a>
+        <a href="#politica">Partiti</a>
+        <a href="#regole">Regole</a>
+        <a href="#domande">FAQ</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="contenuto">
+    <header class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Roleplay politico · Italia</p>
+        <p class="year" aria-label="Anno 1920">1920</p>
+        <h1>Un nuovo secolo. Una storia ancora da scrivere.</h1>
+        <p class="hero-copy">L’Europa esce dalla Grande Guerra e i suoi equilibri cambiano. In questo server Discord interpreti un personaggio italiano dell’epoca: puoi entrare in un movimento, partecipare alla vita parlamentare e prendere parte alla diplomazia. Le tue scelte contribuiscono a scrivere la storia.</p>
+        <div class="actions">
+          <a class="button primary" href="https://discord.gg/eZTdV6Wvb">Entra su Discord</a>
+          <a class="button secondary" href="https://www.tiktok.com/@ilnuovosecolo">Segui su TikTok</a>
+        </div>
+        <p class="hero-note">Anno di riferimento: 1920. Le regole complete sono nel canale <b>regole</b> del server.</p>
+      </div>
+    </header>
+
+    <section id="iniziare">
+      <div class="wrap">
+        <p class="section-kicker">Il tuo ingresso nella storia</p>
+        <h2>Come iniziare</h2>
+        <p class="lead">Dal primo accesso al roleplay, ecco il percorso per orientarti e partecipare.</p>
+        <ol class="steps">
+          <li><div><h3>Entra nel server</h3><p>Usa l’invito Discord. Il canale <b>arrivi</b> segnala i nuovi membri; <b>annunci</b> raccoglie le comunicazioni ufficiali dello staff.</p></div></li>
+          <li><div><h3>Leggi il regolamento</h3><p>Consulta il canale <b>regole</b>: entrando nel server ti impegni a rispettarlo. L’ambientazione è il 1920, quindi personaggi e azioni devono restare coerenti con l’epoca e con la lore.</p></div></li>
+          <li><div><h3>Prepara il personaggio</h3><p>Scegli un nome, una storia e un ruolo plausibili per il periodo. Se hai domande o richieste per lo staff, apri un <b>ticket</b>.</p></div></li>
+          <li><div><h3>Partecipa alla politica</h3><p>Unisciti a un partito o movimento esistente oppure proponine uno seguendo il format. Il canale <b>propaganda</b> è dedicato a far conoscere le tue idee.</p></div></li>
+          <li><div><h3>Contribuisci al racconto</h3><p>Partecipa alle legislature, ai seggi parlamentari, alla diplomazia e alle crisi internazionali, rispettando le procedure e le decisioni previste dal server.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="server">
+      <div class="wrap">
+        <p class="section-kicker">Dove si svolge il roleplay</p>
+        <h2>La mappa del server</h2>
+        <p class="lead">I canali sono organizzati per argomento. Usa ciascuno per la funzione indicata.</p>
+        <div class="cards">
+          <article class="card">
+            <h3>Informazioni</h3>
+            <p>Orientamento, comunicazioni e contatto con lo staff.</p>
+            <ul class="channel-list">
+              <li>regole</li><li>arrivi</li><li>annunci</li><li>chat-generale</li><li>cronologia</li><li>ticket</li><li>partnerships</li>
+            </ul>
+          </article>
+          <article class="card internal">
+            <h3>Affari interni</h3>
+            <p>La vita politica italiana nel roleplay.</p>
+            <ul class="channel-list">
+              <li>dinastia-monarchia</li><li>legislature</li><li>seggi-parlamentari</li><li>propaganda</li><li>partiti<span>Partito Liberale Imperiale</span></li><li>movimenti<span>Unione Patriottica Nazionale, Format</span></li>
+            </ul>
+          </article>
+          <article class="card external">
+            <h3>Affari esteri</h3>
+            <p>Relazioni diplomatiche e conflitti.</p>
+            <ul class="channel-list">
+              <li>cronaca</li><li>guerre</li><li>relazioni-mondiali</li><li>trattati</li><li>crisi-internazionali</li>
+            </ul>
+          </article>
+        </div>
+        <p class="voice-note">È inoltre presente il canale vocale <strong>Generale</strong> per parlare dal vivo.</p>
+      </div>
+    </section>
+
+    <section id="politica">
+      <div class="wrap">
+        <p class="section-kicker">Dalle idee alla rappresentanza</p>
+        <h2>Partiti e movimenti</h2>
+        <p class="lead">Puoi presentare un movimento e, una volta raggiunto il requisito previsto, richiedere lo status di partito.</p>
+        <div class="two">
+          <div>
+            <h3>Proponi un movimento</h3>
+            <p>Nel canale <b>format</b> indica i dati richiesti per la proposta:</p>
+            <div class="tags">
+              <span class="tag">Ideologia</span><span class="tag">Programma elettorale</span><span class="tag">Comitato centrale (città)</span><span class="tag">Segretario</span><span class="tag">Vice segretario</span><span class="tag">Tesserati</span>
+            </div>
+          </div>
+          <div>
+            <h3>Diventa partito</h3>
+            <p>Per diventare partito sono necessari almeno <b>3 tesserati</b>. Il partito ottiene un proprio spazio nella categoria <b>partiti</b>.</p>
+            <aside class="note"><strong>Presenti nell’allegato:</strong> Partito Liberale Imperiale, Unione Patriottica Nazionale e Format.</aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="regole">
+      <div class="wrap">
+        <p class="section-kicker">Giocare con correttezza</p>
+        <h2>Regole essenziali</h2>
+        <p class="lead">Questa è una sintesi informativa. Per il testo completo e aggiornato fa sempre fede il canale <b>regole</b> su Discord.</p>
+        <details open>
+          <summary>Rispetto e comportamento</summary>
+          <ul>
+            <li>Rispetta tutti, indipendentemente da idee politiche, religione o altro.</li>
+            <li>Sono vietati insulti, molestie, minacce, provocazioni continue, razzismo reale e discriminazioni.</li>
+            <li>Mantieni civili le discussioni, anche quando non sei d’accordo sul roleplay.</li>
+            <li>Non disturbare intenzionalmente le attività degli altri giocatori.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Regole del roleplay</summary>
+          <ul>
+            <li>Comportati in modo coerente con il 1920; nome, storia e ruolo del personaggio devono essere plausibili.</li>
+            <li>È vietato il <b>FailRP</b>: non rompere la credibilità della scena.</li>
+            <li>È vietato il <b>PowerGaming</b>: non imporre agli altri azioni o risultati senza lasciarli reagire.</li>
+            <li>È vietato il <b>Metagaming</b>: non usare nel gioco informazioni ottenute fuori dal gioco.</li>
+            <li>È vietato il <b>Godmodding</b>: nessun personaggio è invincibile o immune alle conseguenze.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Coerenza storica</summary>
+          <ul>
+            <li>L’anno di riferimento è il 1920, salvo modifiche ufficiali della lore.</li>
+            <li>Armi, mezzi, tecnologie e comunicazioni devono essere compatibili con l’epoca o con la storia alternativa approvata.</li>
+            <li>Gli eventi storici possono cambiare tramite il roleplay, se la lore lo consente.</li>
+            <li>I cambiamenti che coinvolgono altri Stati o giocatori non si impongono unilateralmente: li decidono i Gestori Eventi.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Diplomazia e Stati</summary>
+          <ul>
+            <li>Comunica alleanze, trattati, accordi commerciali e dichiarazioni nei canali appropriati.</li>
+            <li>Le guerre devono avere motivazioni plausibili; dichiarazioni di guerra, annessioni ed eliminazioni di Stati seguono le procedure stabilite.</li>
+            <li>Le decisioni su personaggi fuori dall’Italia seguono le regole diplomatiche e militari; le azioni sono decise dai Gestori Eventi.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Regole militari</summary>
+          <ul>
+            <li>Le operazioni devono rispettare le capacità economiche, industriali e logistiche dello Stato.</li>
+            <li>Non sono ammessi eserciti, flotte o armamenti illimitati.</li>
+            <li>Le battaglie seguono il sistema di guerra ufficiale del server.</li>
+            <li>Non controllare truppe o decisioni militari di altre nazioni.</li>
+            <li>Accetta sconfitte e conseguenze tramite game e/o Gestori Eventi.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Canali e comunicazione</summary>
+          <ul>
+            <li>Ogni canale ha una funzione specifica. Sono vietati spam, pubblicità non autorizzata e messaggi ripetitivi.</li>
+            <li>Tieni separate le comunicazioni fuori personaggio da quelle di roleplay.</li>
+            <li>Non divulgare informazioni riservate di altri giocatori senza il loro consenso.</li>
+            <li>Pubblica le decisioni ufficiali nei canali designati.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Staff e sanzioni</summary>
+          <ul>
+            <li>Rispetta le indicazioni dello staff. Puoi contestare una decisione civilmente nei canali appropriati.</li>
+            <li>Segnala abusi di potere, favoritismi e manipolazioni delle meccaniche.</li>
+            <li>Le violazioni possono comportare richiami, annullamento delle azioni, sospensioni o espulsioni, in proporzione alla gravità.</li>
+          </ul>
+        </details>
+        <details>
+          <summary>Regole finali</summary>
+          <ul>
+            <li>Entrando nel server ti impegni a rispettare il regolamento; lo staff comunica eventuali modifiche.</li>
+            <li>I casi non previsti sono valutati con correttezza, coerenza ed equità.</li>
+            <li>L’obiettivo principale è il divertimento e la qualità del roleplay.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section id="domande" class="faq">
+      <div class="wrap">
+        <p class="section-kicker">Prima di entrare</p>
+        <h2>Domande frequenti</h2>
+        <p class="lead">Informazioni rapide su lore, staff e partecipazione.</p>
+        <details>
+          <summary>Chi sono i Gestori Eventi?</summary>
+          <p>Sono lo staff che decide gli eventi che coinvolgono altri Stati o personaggi fuori dall’Italia, le guerre e le loro conseguenze.</p>
+        </details>
+        <details>
+          <summary>Posso cambiare la storia?</summary>
+          <p>Sì, attraverso il roleplay e se la lore lo consente. Non puoi imporre da solo cambiamenti che coinvolgono altri.</p>
+        </details>
+        <details>
+          <summary>Come contatto lo staff?</summary>
+          <p>Apri un ticket nel canale <b>ticket</b>. Se non sei d’accordo con una decisione, contestala con calma nei canali appropriati.</p>
+        </details>
+        <details>
+          <summary>Posso dichiarare guerra a un altro Stato?</summary>
+          <p>Solo con una motivazione plausibile e seguendo la procedura stabilita. Le battaglie seguono il sistema di guerra ufficiale.</p>
+        </details>
+        <details>
+          <summary>Come propongo un partito?</summary>
+          <p>Presenta prima un movimento usando il format. Per diventare partito sono necessari almeno 3 tesserati.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p class="section-kicker">Il prossimo capitolo comincia da te</p>
+      <h2>Per un nuovo secolo</h2>
+      <p>Le tue decisioni contribuiranno al corso della storia.</p>
+      <div class="actions">
+        <a class="button primary" href="https://discord.gg/eZTdV6Wvb">Entra su Discord</a>
+        <a class="button secondary" href="https://www.tiktok.com/@ilnuovosecolo">TikTok @ilnuovosecolo</a>
+      </div>
+      <small>Sito informativo non ufficiale del server Il Nuovo Secolo. Per le regole complete fa fede il canale regole su Discord.</small>
+    </div>
+  </footer>
+</body>
+</html>
